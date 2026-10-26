@@ -60,9 +60,9 @@
       });
     }
     if (config.whatsapp) {
-      var item = $("[data-whatsapp-item]");
-      $("[data-whatsapp-link]").href = "https://wa.me/" + config.whatsapp.replace(/\D/g, "");
-      if (item) item.hidden = false;
+      var waUrl = "https://wa.me/" + config.whatsapp.replace(/\D/g, "");
+      $$("[data-whatsapp-link]").forEach(function (a) { a.href = waUrl; });
+      $$("[data-whatsapp-item]").forEach(function (el) { el.hidden = false; });
     }
 
     $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
@@ -136,7 +136,7 @@
   /* ------------------------------------------------------------------
      Animação de entrada
      ------------------------------------------------------------------ */
-  var revealTargets = $$(".section-head, .pain, .feature, .stat, .diff, .step, .plan, .hub, .patchwork, .essence");
+  var revealTargets = $$(".section-head, .pain, .module, .stat, .why li, .plan");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var revealer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -304,7 +304,7 @@
       })
       .then(function () {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Solicitar demonstração";
+        submitBtn.textContent = "Agendar demonstração";
       });
   });
 })();
